@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <defs>
+    <radialGradient id="sunGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffe89e" stop-opacity="1" />
+      <stop offset="60%" stop-color="#f59e0b" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#d97706" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff2a1" />
+      <stop offset="50%" stop-color="#d49a37" />
+      <stop offset="100%" stop-color="#8a530f" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background Sun Halo -->
+  <circle cx="200" cy="200" r="180" fill="url(#sunGlow)" />
+  <circle cx="200" cy="200" r="160" fill="none" stroke="url(#goldGrad)" stroke-width="3" stroke-dasharray="6,6" opacity="0.7" />
+
+  <!-- Sacred 16-Petal Lotus Base -->
+  <g id="lotus" transform="translate(200, 310)">
+    <path d="M0,0 Q-40,-35 -80,-5 Q-40,25 0,0" fill="#f59e0b" opacity="0.8"/>
+    <path d="M0,0 Q40,-35 80,-5 Q40,25 0,0" fill="#f59e0b" opacity="0.8"/>
+    <path d="M0,0 Q-30,-45 0,-60 Q30,-45 0,0" fill="#fbbf24" opacity="0.9"/>
+    <path d="M-40,-10 Q0,-45 40,-10 Q0,15 -40,-10" fill="url(#goldGrad)"/>
+  </g>
+
+  <!-- Lord Dattatreya Sacred Representation (Divine Trinity Form) -->
+  <!-- Radiating Prabhavali (Arch of Light) -->
+  <path d="M 90,300 C 90,100 310,100 310,300" fill="none" stroke="url(#goldGrad)" stroke-width="8" stroke-linecap="round" filter="url(#glow)"/>
+  
+  <!-- Central Trinity Silhouette & Crowns -->
+  <!-- Middle Face: Lord Vishnu (Preserver) -->
+  <g transform="translate(200, 160)">
+    <circle cx="0" cy="0" r="32" fill="#fef3c7" stroke="url(#goldGrad)" stroke-width="2"/>
+    <!-- Kiritam (Tall Vishnu Crown) -->
+    <path d="M-18,-25 L-12,-70 L0,-85 L12,-70 L18,-25 Z" fill="url(#goldGrad)"/>
+    <!-- Tilak -->
+    <path d="M-4,-15 L-4,0 Q0,8 4,0 L4,-15 Z" fill="#dc2626"/>
+    <circle cx="0" cy="-6" r="2" fill="#f59e0b"/>
+  </g>
+
+  <!-- Left Face: Lord Brahma (Creator - Beard & Jata) -->
+  <g transform="translate(145, 175)">
+    <circle cx="0" cy="0" r="26" fill="#fef3c7" stroke="url(#goldGrad)" stroke-width="2"/>
+    <!-- Jata Mukuta (Ascetic Crown) -->
+    <path d="M-14,-20 Q-10,-55 0,-60 Q10,-55 14,-20 Z" fill="url(#goldGrad)"/>
+    <!-- Holy Beard -->
+    <path d="M-12,18 Q0,42 12,18 Z" fill="#92400e" opacity="0.7"/>
+  </g>
+
+  <!-- Right Face: Lord Shiva (Destroyer / Supreme Yogin - Crescent Moon) -->
+  <g transform="translate(255, 175)">
+    <circle cx="0" cy="0" r="26" fill="#fef3c7" stroke="url(#goldGrad)" stroke-width="2"/>
+    <!-- Shiva Jata & Crescent Moon -->
+    <path d="M-14,-20 Q-5,-60 0,-62 Q10,-55 14,-20 Z" fill="url(#goldGrad)"/>
+    <!-- Crescent Moon -->
+    <path d="M10,-40 A6,6 0 0 1 18,-30 A6,6 0 0 0 12,-44 Z" fill="#ffffff"/>
+    <!-- Tripundra (3 ash lines) -->
+    <line x1="-8" y1="-8" x2="8" y2="-8" stroke="#ffffff" stroke-width="1.5"/>
+    <line x1="-8" y1="-5" x2="8" y2="-5" stroke="#ffffff" stroke-width="1.5"/>
+    <circle cx="0" cy="-5" r="1.5" fill="#dc2626"/>
+  </g>
+
+  <!-- Sacred Torso with Rudraksha & Yajnopavita -->
+  <path d="M150,225 Q200,215 250,225 L240,305 Q200,315 160,305 Z" fill="#fef3c7" stroke="url(#goldGrad)" stroke-width="2"/>
+  <!-- Pitambara (Yellow/Orange Robe) -->
+  <path d="M140,290 Q200,320 260,290 L255,335 Q200,345 145,335 Z" fill="#f59e0b"/>
+  <!-- Sacred Thread (Yajnopavita) -->
+  <path d="M165,225 Q205,270 230,305" fill="none" stroke="#ffffff" stroke-width="2"/>
+  <!-- Rudraksha Necklaces -->
+  <path d="M175,220 Q200,245 225,220" fill="none" stroke="#78350f" stroke-width="4" stroke-dasharray="3,3"/>
+
+  <!-- Divine Ayudhas (Sacred Implements) in 6 Arms -->
+  <!-- Trishula (Trident - Shiva) -->
+  <g transform="translate(85, 130)">
+    <line x1="15" y1="0" x2="15" y2="180" stroke="url(#goldGrad)" stroke-width="4"/>
+    <path d="M5,15 Q15,0 15,35 M25,15 Q15,0 15,35 M15,0 L15,35" fill="none" stroke="url(#goldGrad)" stroke-width="3"/>
+    <!-- Damaru on Trident -->
+    <polygon points="5,70 25,90 5,90 25,70" fill="url(#goldGrad)"/>
+  </g>
+
+  <!-- Sudarshana Chakra (Discus - Vishnu) -->
+  <g transform="translate(300, 140)">
+    <circle cx="15" cy="15" r="18" fill="none" stroke="url(#goldGrad)" stroke-width="3" stroke-dasharray="4,4" filter="url(#glow)"/>
+    <circle cx="15" cy="15" r="7" fill="url(#goldGrad)"/>
+  </g>
+
+  <!-- Shankha (Conch - Vishnu) -->
+  <g transform="translate(310, 220)">
+    <ellipse cx="10" cy="10" rx="14" ry="9" transform="rotate(-30 10 10)" fill="#ffffff" stroke="url(#goldGrad)" stroke-width="2"/>
+  </g>
+
+  <!-- Kamandalu (Water pot - Brahma) -->
+  <g transform="translate(75, 230)">
+    <path d="M10,10 C5,25 25,25 20,10 Z" fill="url(#goldGrad)"/>
+    <path d="M10,10 Q15,0 20,10" fill="none" stroke="url(#goldGrad)" stroke-width="2"/>
+  </g>
+
+  <!-- Sacred Padukas (Holy Feet / Footprints) in Center Front -->
+  <g transform="translate(180, 340)">
+    <!-- Left Paduka -->
+    <ellipse cx="10" cy="12" rx="7" ry="14" fill="#d97706" stroke="#fff" stroke-width="1.5"/>
+    <circle cx="10" cy="5" r="2.5" fill="#fef08a"/>
+    <!-- Right Paduka -->
+    <ellipse cx="30" cy="12" rx="7" ry="14" fill="#d97706" stroke="#fff" stroke-width="1.5"/>
+    <circle cx="30" cy="5" r="2.5" fill="#fef08a"/>
+  </g>
+
+  <!-- Text inscription below Paduka -->
+  <text x="200" y="385" font-family="'Cinzel', serif" font-size="13" font-weight="700" fill="#78350f" text-anchor="middle" letter-spacing="3">
+    श्री गुरुदेव दत्त
+  </text>
+</svg>

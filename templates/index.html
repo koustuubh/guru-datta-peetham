@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="te-IN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>గురు దత్త పీఠం | GURU DATTA PEETHAM - Rushivani (ఋషివాణి)</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Outfit:wght@300;400;500;600;700&family=Tiro+Telugu:ital@0;1&display=swap" rel="stylesheet">
+  <!-- Google Identity Services (GIS) for Google Sign-In -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+
+  <!-- ====================================================
+       1. TOP SACRED MANTRA CHANT
+       ==================================================== -->
+  <div class="sacred-ticker">
+    <div class="ticker-text">
+      ✨ ॐ दिगंबरा दिगंबरा श्रीपाद वल्लभ दिगंबरा | ॐ द्रं दत्तात्रेयाय नमः | దత్తాత్రేయ హరే కృష్ణ ఉన్మత్తానంద దాయక ✨
+    </div>
+  </div>
+
+  <!-- ====================================================
+       2. TOP HEADER NAVIGATION
+       ==================================================== -->
+  <header class="header" id="mainHeader">
+    <div class="header-inner">
+      <div class="brand">
+        <div class="om-logo pulse-animation">
+          <img src="/static/images/om.svg" alt="Om" width="44" height="44">
+        </div>
+        <div>
+          <h1 class="brand-title">గురు దత్త పీఠం</h1>
+          <div class="channel-brand-row">
+            <img src="/static/images/rushivani_logo.png" alt="Rushivani" class="rushivani-logo-img">
+            <span class="brand-subtitle">GURU DATTA PEETHAM • ఋషివాణి</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Search Bar -->
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search Karungali, Hakik, Rudraksha, Murtis..." oninput="onSearch(this.value)">
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="header-buttons">
+        <a href="https://www.youtube.com/@Rushivani?sub_confirmation=1" target="_blank" class="yt-subscribe-btn">
+          <span class="yt-icon">▶</span>
+          <span>YouTube @Rushivani</span>
+        </a>
+
+        <!-- Devotee Helpdesk / Issues Trigger -->
+        <button class="btn-helpdesk-nav" onclick="openIssueModal()" title="Submit an issue or inquiry">
+          <span>💬 Helpdesk</span>
+        </button>
+
+        <!-- User / Admin Login Container -->
+        <div id="authContainer">
+          <button class="btn-auth-trigger" id="authBtn" onclick="openAuthModal()">
+            <span id="authBtnText">👤 Login / Admin</span>
+          </button>
+        </div>
+
+        <!-- Cart Button -->
+        <button class="cart-trigger-btn" onclick="toggleCart()">
+          <span class="cart-icon">🛍️</span>
+          <span>Cart</span>
+          <span class="cart-count-badge" id="cartCount">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ====================================================
+       3. OFFICIAL TRUST BANNER (FULL WIDTH SACRED BANNER)
+       ==================================================== -->
+  <section class="official-banner-section">
+    <div class="banner-wrapper">
+      <img src="/static/images/peetham_banner.png" alt="Guru Datta Peetham Charitable Trust Reg No 172/2022" class="official-trust-banner">
+    </div>
+  </section>
+
+  <!-- ====================================================
+       4. HERO SACRED DARSHAN & CALL TO ACTION
+       ==================================================== -->
+  <section class="hero" id="homeSection">
+    <div class="floating-om om-left float-animation">ॐ</div>
+    <div class="floating-om om-right float-animation-delayed">ॐ</div>
+
+    <div class="hero-card">
+      <div class="altar-image-frame glow-ring">
+        <img src="/static/images/datta_altar.jpg" alt="Sacred Lord Dattatreya Altar" class="altar-hero-img">
+        <span class="altar-caption">శ్రీ గురుదత్త పీఠం - దివ్య పీఠ దర్శనం</span>
+      </div>
+
+      <div class="hero-text-content">
+        <div class="shloka-badge">శ్రీ గురుదేవ దత్త | ఋషివాణి</div>
+        <h2>GURU DATTA PEETHAM</h2>
+        <p class="hero-telugu-shloka">
+          "దత్తాత్రేయ హరే కృష్ణ ఉన్మత్తానంద దాయక | దిగంబర మునే బాల పిశాచ జ్ఞాన సాగర"
+        </p>
+        <p class="hero-description">
+          గురు దత్త పీఠం ఛారిటబుల్ ట్రస్ట్ (రి.నెం.172/2022). అనుగ్రహింపబడిన శ్రీ దత్తాత్రేయ స్వామి దివ్య దర్శనం, రుషివాణి ఆధ్యాత్మిక ప్రవచనములు, మరియు శక్తివంతమైన కరుణా కటాక్ష కరుంగాలి, హకీక్, రుద్రాక్ష మాలల దివ్య వేదిక.
+        </p>
+        <div class="hero-cta-group">
+          <a href="#storeSection" class="btn-primary-glow">Sacred Malas & Offerings 📿</a>
+          <a href="#shortsSection" class="btn-secondary-glow">Watch Shorts & Pravachanams 📱</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================
+       5. GURUJI DR. SHANMUKHA SRINIVAS PROFILE
+       ==================================================== -->
+  <section class="guruji-section" id="gurujiSection">
+    <div class="container">
+      <div class="guruji-card">
+        <div class="guruji-img-box">
+          <img src="/static/images/guruji.png" alt="Guruji Dr. Shanmukha Srinivas" class="guruji-img">
+          <div class="guruji-badge">Dattatreya Upasakulu</div>
+        </div>
+        <div class="guruji-info">
+          <span class="section-tag">వ్యవస్థాపకులు • Founder & Spiritual Guide</span>
+          <h3>Guruji Dr. Shanmukha Srinivas</h3>
+          <p class="spiritual-title">Swamy Kamalananda Naadha | గురు దత్త పీఠం</p>
+          <p class="guruji-bio">
+            దత్తాత్రేయ ఉపాసకులు <strong>గురూజీ డా. షణ్ముఖ శ్రీనివాస్ (స్వామి కమలానంద నాథ)</strong> గారి ఆధ్వర్యంలో <strong>Rushivani (ఋషివాణి)</strong> ఛానల్ ద్వారా లక్షలాది భక్తులకు సనాతన ధర్మ ప్రచారం, గురు చరిత్ర పారాయణ నియమములు, మరియు ప్రాచీన జ్యోతిష్య పరిహారములు నిరంతరం అందించబడుచున్నవి.
+          </p>
+          <div class="guruji-highlights">
+            <div class="highlight-item">
+              <span class="hl-icon">🕉️</span>
+              <div>
+                <strong>దత్త ఉపాసన</strong>
+                <p>మంత్ర దీక్ష & ఉపాసనా రహస్యములు</p>
+              </div>
+            </div>
+            <div class="highlight-item">
+              <span class="hl-icon">📖</span>
+              <div>
+                <strong>గురు చరిత్ర</strong>
+                <p>సప్తాహ పారాయణ విధి విధానములు</p>
+              </div>
+            </div>
+            <div class="highlight-item">
+              <span class="hl-icon">📿</span>
+              <div>
+                <strong>మాల ధారణ</strong>
+                <p>కరుంగాలి, హకీక్, రుద్రాక్ష ఫలితాలు</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================
+       6. RECENT 3 COMMUNITY POSTS (@Rushivani/posts)
+       ==================================================== -->
+  <section class="community-section" id="communitySection">
+    <div class="container">
+      <div class="section-title-bar">
+        <div>
+          <span class="badge-red-live">🔴 REAL-TIME COMMUNITY POSTS</span>
+          <h3 class="section-heading">Recent Community Posts (@Rushivani/posts)</h3>
+          <p class="section-subheading">Automatic real-time posts, news predictions & announcements directly from Guruji's YouTube channel</p>
+        </div>
+        <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+          <button class="cat-btn" style="padding: 5px 12px; font-size: 0.8rem;" onclick="loadRealtimeCommunityPosts()">🔄 Refresh Posts</button>
+          <a href="https://www.youtube.com/@Rushivani/posts" target="_blank" class="view-all-yt-link">
+            Open YouTube Community Tab &rarr;
+          </a>
+        </div>
+      </div>
+
+      <div class="community-grid" id="communityGrid">
+        <!-- Post 1 (From Guruji's screenshot: Indonesia Volcano Prediction) -->
+        <article class="post-card premium-card">
+          <div class="post-header-row">
+            <div class="author-avatar-box">
+              <img src="/static/images/guruji.png" alt="Guruji" class="author-avatar">
+              <div>
+                <strong>Rushivani ఋషివాణి</strong>
+                <span class="author-handle">@Rushivani • 4 గంటల క్రితం</span>
+              </div>
+            </div>
+            <span class="post-tag festival-tag">🌋 భవిష్యవాణి</span>
+          </div>
+          <div class="post-image-banner">
+            <a href="https://www.youtube.com/post/UgkxNL0xvNgPgyMXUbZcKDzK-QEbRvRQ-IoX" target="_blank" style="width:100%; height:100%;">
+              <img src="https://yt3.ggpht.com/9SZICycsN63dVkQ4vcoKkRafEEXEY10sztCgOm2goxDoOpIF8yIf4jcm0WJrudZn-CpOTrRC7zcTDoQ=s800" alt="ఇండోనేషియాలో అగ్నిపర్వతం బద్దలగుట" class="post-featured-media" style="width:100%; height:100%; object-fit:cover;">
+            </a>
+          </div>
+          <h4 class="post-title">ఇండోనేషియాలో అగ్నిపర్వతం బద్దలగుట.. ప్రపంచారిష్ట యోగాలు</h4>
+          <p class="post-content">
+            "ఇండోనేషియాలో అగ్నిపర్వతం బద్దలగుట..సెప్టెంబర్ 4-6న జరిగిన ఈ సంఘటన.. ప్రపంచారిష్ఠయోగాలో సెప్టెంబర్ 4, 6 వ తారీకులు నేను ముందుగానే పోస్టులో ఇవ్వడం జరిగింది."
+          </p>
+          <div class="post-footer">
+            <span class="post-likes">❤️ 4 hours ago</span>
+            <a href="https://www.youtube.com/post/UgkxNL0xvNgPgyMXUbZcKDzK-QEbRvRQ-IoX" target="_blank" class="post-yt-btn">View on YouTube ▶</a>
+          </div>
+        </article>
+
+        <!-- Post 2: Live @ 09-09-26 @08:30 pm -->
+        <article class="post-card premium-card">
+          <div class="post-header-row">
+            <div class="author-avatar-box">
+              <img src="/static/images/guruji.png" alt="Guruji" class="author-avatar">
+              <div>
+                <strong>Rushivani ఋషివాణి</strong>
+                <span class="author-handle">@Rushivani • 21 గంటల క్రితం</span>
+              </div>
+            </div>
+            <span class="post-tag aarti-tag">🔴 లైవ్ అలర్ట్</span>
+          </div>
+          <div class="post-image-banner">
+            <a href="https://www.youtube.com/post/UgkxlBcZNP9sjF2Y5W-FusHkULvMdbwLBvlJ" target="_blank" style="width:100%; height:100%;">
+              <img src="https://yt3.ggpht.com/ecSjfLZgadvm-rUvIbu1QFtVep3CHzcY9IWN5WMejQRq-2khXdYq7CbqDlGMMCqLnPWVKtSgYgCotg=s800" alt="Live @ 09-09-26" class="post-featured-media" style="width:100%; height:100%; object-fit:cover;">
+            </a>
+          </div>
+          <h4 class="post-title">Live @ 09-09-26 @08:30 pm ప్రత్యక్ష ప్రసారం</h4>
+          <p class="post-content">
+            "రేపు రాత్రి 8:30 గంటలకు రుషివాణి యూట్యూబ్ ఛానల్లో ప్రత్యేక లైవ్ కార్యక్రమం. భక్తులందరూ పాల్గొని సందేహములు నివృత్తి చేసుకోగలరు."
+          </p>
+          <div class="post-footer">
+            <span class="post-likes">🔔 09-09-26 Live</span>
+            <a href="https://www.youtube.com/post/UgkxlBcZNP9sjF2Y5W-FusHkULvMdbwLBvlJ" target="_blank" class="post-yt-btn">View on YouTube ▶</a>
+          </div>
+        </article>
+
+        <!-- Post 3: Altar Upasana & Mala Vidhi -->
+        <article class="post-card premium-card">
+          <div class="post-header-row">
+            <div class="author-avatar-box">
+              <img src="/static/images/rushivani_logo.png" alt="Rushivani" class="author-avatar square-avatar">
+              <div>
+                <strong>Rushivani ఋషివాణి</strong>
+                <span class="author-handle">@Rushivani • 22 గంటల క్రితం</span>
+              </div>
+            </div>
+            <span class="post-tag mala-tag">📿 పీఠం విశేషాలు</span>
+          </div>
+          <div class="post-image-banner">
+            <a href="https://www.youtube.com/post/Ugkx3lYhykpnN0bT-5QI6uU-qltwLqPvwWyM" target="_blank" style="width:100%; height:100%;">
+              <img src="https://yt3.ggpht.com/A1mQvRCzA7jHzqO0KVFWrqUads_MVFXTmZmX5TA4amaIsWU3EBNt4UUkFADaVyzTQwMFP8LEBHXN=s800" alt="పీఠం విశేషాలు" class="post-featured-media" style="width:100%; height:100%; object-fit:cover;">
+            </a>
+          </div>
+          <h4 class="post-title">శ్రీ గురుదేవ దత్తాత్రేయ నిత్య సంకల్పం & పూజా విధానం</h4>
+          <p class="post-content">
+            "పీఠంలో విశేష దత్తాత్రేయ స్వామి అభిషేకం, కరుంగాలి & హకీక్ మాల ధారణ ఫలితాలు మరియు సకల కార్యసిద్ధి దత్త మంత్ర జపం."
+          </p>
+          <div class="post-footer">
+            <span class="post-likes">🙏 Special Darshan</span>
+            <a href="https://www.youtube.com/post/Ugkx3lYhykpnN0bT-5QI6uU-qltwLqPvwWyM" target="_blank" class="post-yt-btn">View on YouTube ▶</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================
+       7. RECENT 3 YOUTUBE SHORTS (@Rushivani/shorts)
+       ==================================================== -->
+  <!-- ====================================================
+       7. RECENT YOUTUBE SHORTS (@Rushivani/shorts)
+       ==================================================== -->
+  <section class="shorts-section" id="shortsSection">
+    <div class="container">
+      <div class="section-title-bar">
+        <div>
+          <span class="badge-shorts">⚡ REAL-TIME SHORTS</span>
+          <h3 class="section-heading">Recent Shorts (@Rushivani/shorts)</h3>
+          <p class="section-subheading">Automatic YouTube thumbnails & direct clickable links from Guruji's channel</p>
+        </div>
+        <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+          <button class="cat-btn" style="padding: 5px 12px; font-size: 0.8rem;" onclick="loadRealtimeYouTubeContent()">🔄 Refresh Latest</button>
+          <a href="https://www.youtube.com/@Rushivani/shorts" target="_blank" class="view-all-yt-link">
+            All Shorts on Channel &rarr;
+          </a>
+        </div>
+      </div>
+
+      <div class="shorts-grid" id="shortsGrid">
+        <!-- Short 1 (08-09-26 from Guruji's screenshot) -->
+        <a href="https://www.youtube.com/shorts/M1o4W-hlVGA" target="_blank" class="short-card">
+          <div class="short-thumb-wrapper">
+            <img src="https://i.ytimg.com/vi/M1o4W-hlVGA/hqdefault.jpg" alt="08-09-26 భౌమ ప్రదోషం" loading="lazy">
+            <div class="short-overlay">
+              <span class="short-play-btn">▶</span>
+              <span class="short-tag">⚡ Short</span>
+            </div>
+          </div>
+          <div class="short-info">
+            <h4>08-09-26 శ్రావణ బహుళ త్రయోదశి (ప్రదోషకాల) సర్వార్ధ సిద్ధయోగంతో కూడిన భౌమ ప్రదోషం.</h4>
+            <span>@Rushivani • 1.6K views • Today</span>
+          </div>
+        </a>
+
+        <!-- Short 2 (07-09-26 from Guruji's screenshot) -->
+        <a href="https://www.youtube.com/shorts/jmDb896f-i0" target="_blank" class="short-card">
+          <div class="short-thumb-wrapper">
+            <img src="https://i.ytimg.com/vi/jmDb896f-i0/hqdefault.jpg" alt="07-09-26 అజ ఏకాదశి" loading="lazy">
+            <div class="short-overlay">
+              <span class="short-play-btn">▶</span>
+              <span class="short-tag">⚡ Short</span>
+            </div>
+          </div>
+          <div class="short-info">
+            <h4>07-09-26 శ్రావణ బహుళ ఏకాదశి, అందునా అమోఘమైన శ్రావణ సోమవారం.అజ ఏకాదశి పర్వదినం.</h4>
+            <span>@Rushivani • 742 views • Yesterday</span>
+          </div>
+        </a>
+
+        <!-- Short 3 (Sarvepalli Radhakrishnan from Guruji's screenshot) -->
+        <a href="https://www.youtube.com/shorts/jVSW57CNyOM" target="_blank" class="short-card">
+          <div class="short-thumb-wrapper">
+            <img src="https://i.ytimg.com/vi/jVSW57CNyOM/hqdefault.jpg" alt="డాక్టర్ సర్వేపల్లి రాధాకృష్ణన్ గారి జన్మకుండలి" loading="lazy">
+            <div class="short-overlay">
+              <span class="short-play-btn">▶</span>
+              <span class="short-tag">⚡ Short</span>
+            </div>
+          </div>
+          <div class="short-info">
+            <h4>డాక్టర్ సర్వేపల్లి రాధాకృష్ణన్ గారి జన్మకుండలి.. #shorts #teachersday</h4>
+            <span>@Rushivani • 371 views</span>
+          </div>
+        </a>
+
+        <!-- Short 4 (Sri Krishna Janmashtami from Guruji's screenshot) -->
+        <a href="https://www.youtube.com/shorts/wUXdxPAGc3A" target="_blank" class="short-card">
+          <div class="short-thumb-wrapper">
+            <img src="https://i.ytimg.com/vi/wUXdxPAGc3A/hqdefault.jpg" alt="శ్రీ కృష్ణాష్టమి స్తోత్రము" loading="lazy">
+            <div class="short-overlay">
+              <span class="short-play-btn">▶</span>
+              <span class="short-tag">⚡ Short</span>
+            </div>
+          </div>
+          <div class="short-info">
+            <h4>04-09-26 శ్రావణ బహుళ అష్టమి,.శ్రీ కృష్ణాష్టమి పర్వదినంనందర్భంగా చదవవలసిన స్తోత్రము,శ్లోకం</h4>
+            <span>@Rushivani • 1.9K views</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================
+       8. LIVE DISCOURSES & FULL VIDEOS
+       ==================================================== -->
+  <section class="videos-section" id="videosSection">
+    <div class="container">
+      <div class="section-title-bar">
+        <div>
+          <span class="badge-red-live">🔴 LIVE & PRAVACHANAMS</span>
+          <h3 class="section-heading">Sacred Discourses & Pravachanams</h3>
+          <p class="section-subheading">Automatic YouTube thumbnails, direct video links & inline player</p>
+        </div>
+        <a href="https://www.youtube.com/@Rushivani/videos" target="_blank" class="view-all-yt-link">
+          All Videos on Channel &rarr;
+        </a>
+      </div>
+
+      <div class="video-grid" id="videosGrid">
+        <!-- Video 1: Guruji Live Highlights -->
+        <article class="video-card">
+          <a href="https://www.youtube.com/watch?v=WrZ2qq_ykNg" target="_blank" style="text-decoration:none; color:inherit;">
+            <div class="video-thumbnail">
+              <div class="yt-play-overlay">▶</div>
+              <img src="https://i.ytimg.com/vi/WrZ2qq_ykNg/hqdefault.jpg" alt="Guruji Live Highlights">
+              <span class="video-duration">Full Discourse</span>
+            </div>
+          </a>
+          <div class="video-details">
+            <h4>GURUJI Live Highlights ప్రమాదాలకి,యాక్సిడెంట్స్ కి గురి కాకుండా ఏ మంత్రం జపించాలి..?</h4>
+            <p>ప్రమాదాలు, యాక్సిడెంట్స్ నివారణకు ప్రత్యేక మంత్ర జపం & పరిహార సూచనలు.</p>
+            <div class="video-action-row">
+              <a href="https://www.youtube.com/watch?v=WrZ2qq_ykNg" target="_blank" class="watch-now-btn">Watch on YouTube ▶</a>
+              <button class="btn-play-inline" onclick="playVideoModal('WrZ2qq_ykNg', 'GURUJI Live Highlights')">Play Here 📺</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Video 2: Angaraka Yogam -->
+        <article class="video-card">
+          <a href="https://www.youtube.com/watch?v=noYfcJ-e-kU" target="_blank" style="text-decoration:none; color:inherit;">
+            <div class="video-thumbnail">
+              <div class="yt-play-overlay">▶</div>
+              <img src="https://i.ytimg.com/vi/noYfcJ-e-kU/hqdefault.jpg" alt="అంగారక యోగం">
+              <span class="video-duration">Pravachanam</span>
+            </div>
+          </a>
+          <div class="video-details">
+            <h4>అంగారక యోగం..ప్రపంచ వినాశనం..?భవిష్యత్తులో ఏం జరగబోతోంది...?</h4>
+            <p>నిజమైన నా భవిష్యవాణి - గ్రహ కూటమి ఫలితాలు మరియు ధర్మ సాధన విధి.</p>
+            <div class="video-action-row">
+              <a href="https://www.youtube.com/watch?v=noYfcJ-e-kU" target="_blank" class="watch-now-btn">Watch on YouTube ▶</a>
+              <button class="btn-play-inline" onclick="playVideoModal('noYfcJ-e-kU', 'అంగారక యోగం')">Play Here 📺</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Video 3: Sankranti Upasana -->
+        <article class="video-card">
+          <a href="https://www.youtube.com/watch?v=8m6EScqp6PE" target="_blank" style="text-decoration:none; color:inherit;">
+            <div class="video-thumbnail">
+              <div class="yt-play-overlay">▶</div>
+              <img src="https://i.ytimg.com/vi/8m6EScqp6PE/hqdefault.jpg" alt="సంక్రాంతి రోజు అదృష్టాన్ని తెచ్చిపెట్టే విధివిధానాలు">
+              <span class="video-duration">Special Guide</span>
+            </div>
+          </a>
+          <div class="video-details">
+            <h4>14-01-26 సంక్రాంతి రోజు అదృష్టాన్ని తెచ్చిపెట్టే విధివిధానాలు....</h4>
+            <p>సూర్య సంక్రమణ పుణ్యకాల పూజ, పితృ తర్పణ మరియు దత్తాత్రేయ కృపా కటాక్షం.</p>
+            <div class="video-action-row">
+              <a href="https://www.youtube.com/watch?v=8m6EScqp6PE" target="_blank" class="watch-now-btn">Watch on YouTube ▶</a>
+              <button class="btn-play-inline" onclick="playVideoModal('8m6EScqp6PE', 'సంక్రాంతి రోజు అదృష్టాన్ని తెచ్చిపెట్టే విధివిధానాలు')">Play Here 📺</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================
+       9. SACRED MALAS & CONSECRATED OFFERINGS STORE
+       ==================================================== -->
+  <main class="container" id="storeSection">
+    <div class="section-title-bar">
+      <div>
+        <span class="badge-store">📿 CONSECRATED PRASADHAM</span>
+        <h3 class="section-heading">పీఠం దివ్య మాలలు & పూజా వస్తువులు</h3>
+        <p class="section-subheading">Consecrated & Energized at Guru Datta Peetham Altar</p>
+      </div>
+      <div class="category-buttons" id="categoryButtons">
+        <button class="cat-btn active" onclick="selectCategory('all', this)">All Items</button>
+      </div>
+    </div>
+
+    <!-- Product Grid -->
+    <div class="product-grid" id="productGrid">
+      <div class="loading-box">
+        <div class="spinner"></div>
+        <p>Invoking Sacred Items...</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- ====================================================
+       10. CART DRAWER
+       ==================================================== -->
+  <div class="cart-backdrop" id="cartBackdrop" onclick="toggleCart()"></div>
+  <aside class="cart-drawer" id="cartDrawer">
+    <div class="drawer-header">
+      <h4>Your Sacred Cart 🪷</h4>
+      <button class="close-icon" onclick="toggleCart()">&times;</button>
+    </div>
+    <div class="drawer-body" id="cartItemsContainer"></div>
+    <div class="drawer-footer" id="cartFooter" style="display: none;">
+      <div class="total-line">
+        <span>Total Offering:</span>
+        <strong id="cartTotalDisplay">₹0</strong>
+      </div>
+      <button class="checkout-btn" onclick="openCheckout()">Proceed to Checkout 🙏</button>
+    </div>
+  </aside>
+
+  <!-- ====================================================
+       11. CHECKOUT MODAL WITH DYNAMIC UPI QR & WHATSAPP
+       ==================================================== -->
+  <div class="modal" id="checkoutModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4>Complete Your Divine Order 🙏</h4>
+        <button class="close-icon" onclick="closeCheckout()">&times;</button>
+      </div>
+      <form onsubmit="submitOrder(event)" class="order-form">
+        <div class="form-group">
+          <label>Full Name *</label>
+          <input type="text" id="custName" required placeholder="e.g. Ramesh Sharma">
+        </div>
+        <div class="form-group">
+          <label>Email Address *</label>
+          <input type="email" id="custEmail" required placeholder="ramesh@example.com">
+        </div>
+        <div class="form-group">
+          <label>Phone Number *</label>
+          <input type="tel" id="custPhone" required placeholder="9876543210">
+          <label class="whatsapp-checkbox-row">
+            <input type="checkbox" id="custHasWhatsapp" checked>
+            <span>☑️ This phone number has WhatsApp (for dispatch updates & tracking)</span>
+          </label>
+        </div>
+        <div class="form-group">
+          <label>Delivery Address *</label>
+          <textarea id="custAddress" required rows="2" placeholder="House / Flat No, Street, City, Pincode"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Payment Method</label>
+          <select id="custPayment" onchange="togglePaymentQrView(this.value)">
+            <option value="UPI">📱 Instant UPI QR (PhonePe / GPay / Paytm / BHIM)</option>
+            <option value="Card">💳 Credit / Debit Card</option>
+            <option value="COD">💵 Cash on Delivery (COD)</option>
+          </select>
+        </div>
+
+        <!-- Dynamic Official UPI QR Box -->
+        <div class="upi-qr-card" id="upiQrCard">
+          <div style="font-weight:700; color:var(--maroon); font-size: 0.95rem;">
+            📱 Scan & Pay via PhonePe, Google Pay, Paytm, or BHIM
+          </div>
+          <img id="upiQrImg" src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=upi://pay?pa=gurudattapeetham@upi&pn=GURU+DATTA+PEETHAM&cu=INR" alt="UPI QR Code" class="upi-qr-image">
+          <div style="font-size:0.82rem; color:#555;">
+            UPI ID: <strong style="color:var(--maroon);">gurudattapeetham@upi</strong><br>
+            Name: <strong>GURU DATTA PEETHAM CHARITABLE TRUST</strong>
+          </div>
+          <a id="btnUpiApp" href="upi://pay?pa=gurudattapeetham@upi&pn=GURU+DATTA+PEETHAM&cu=INR" class="btn-upi-deeplink">
+            ⚡ One-Tap Pay via Mobile UPI App
+          </a>
+          <div style="margin-top: 14px; text-align: left;">
+            <label style="font-weight:700; font-size: 0.85rem; color:var(--maroon);">12-digit UPI UTR / Transaction Reference Number *</label>
+            <input type="text" id="custUtr" placeholder="Enter 12-digit UTR after payment (e.g. 425612349876)">
+            <small style="color:#777; font-size:0.75rem; display:block; margin-top:2px;">Authentication: Admin will verify this transaction number before dispatching your consecrated items.</small>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn-cancel" onclick="closeCheckout()">Cancel</button>
+          <button type="submit" class="btn-submit" id="submitOrderBtn">Place Divine Order</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ====================================================
+       12. AUTHENTICATION MODAL (ADMIN & GOOGLE / DEVOTEE)
+       ==================================================== -->
+  <div class="modal" id="authModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 id="authModalTitle">🔐 Login to Guru Datta Peetham</h4>
+        <button class="close-icon" onclick="closeAuthModal()">&times;</button>
+      </div>
+      <div class="auth-tabs">
+        <button class="auth-tab-btn active" id="tabAdminLogin" onclick="switchAuthTab('admin')">👑 Admin Login</button>
+        <button class="auth-tab-btn" id="tabUserLogin" onclick="switchAuthTab('user')">👤 Devotee Login</button>
+      </div>
+
+      <!-- Login Form -->
+      <form onsubmit="handleLogin(event)" id="loginForm" class="auth-form">
+        <div class="form-group">
+          <label>Username / Email *</label>
+          <input type="text" id="loginUsername" required placeholder="Admin username or email">
+        </div>
+        <div class="form-group">
+          <label>Password *</label>
+          <input type="password" id="loginPassword" required placeholder="Enter password">
+        </div>
+        <div class="admin-hint-text" id="adminHint">
+          <small>⚡ Default Admin: <strong>admin</strong> | Password: <strong>datta123</strong></small>
+        </div>
+
+        <!-- Google Sign In for Devotee -->
+        <div class="google-auth-box" id="googleAuthBox" style="display: none;">
+          <button type="button" class="btn-google-sign-in" onclick="triggerGoogleSignIn()">
+            <svg class="google-icon" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.34 24 12 24z"/><path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.97 0 12s.45 3.82 1.25 5.42l4.03-3.15z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.34 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/></svg>
+            <span>Sign in with Google Account</span>
+          </button>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn-cancel" onclick="closeAuthModal()">Cancel</button>
+          <button type="submit" class="btn-submit" id="loginSubmitBtn">Sign In</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ====================================================
+       13. PROFESSIONAL ADMIN CONTROL CENTER (ORDERS, RATES, ISSUES)
+       ==================================================== -->
+  <div class="modal" id="adminOrdersModal">
+    <div class="modal-content modal-lg">
+      <div class="modal-header">
+        <h4>👑 Guru Datta Peetham - Professional Admin Control Center</h4>
+        <button class="close-icon" onclick="closeAdminOrdersModal()">&times;</button>
+      </div>
+
+      <!-- 3-Tab Admin Bar -->
+      <div class="admin-tabs">
+        <button class="admin-tab-btn active" id="tabBtnOrders" onclick="switchAdminTab('orders')">📋 Orders & Transactions</button>
+        <button class="admin-tab-btn" id="tabBtnProducts" onclick="switchAdminTab('products')">🏷️ Items & Rates Management</button>
+        <button class="admin-tab-btn" id="tabBtnIssues" onclick="switchAdminTab('issues')">💬 Devotee Issues</button>
+      </div>
+
+      <!-- Pane 1: Orders & Transactions -->
+      <div class="admin-tab-pane active" id="paneAdminOrders">
+        <div class="admin-orders-toolbar">
+          <span id="adminOrdersCount">Total Orders: Loading...</span>
+          <button class="btn-refresh-orders" onclick="loadAdminOrders()">🔄 Refresh Orders</button>
+        </div>
+        <div class="orders-table-scroll">
+          <table class="admin-orders-table">
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Customer</th>
+                <th>Phone & WhatsApp</th>
+                <th>Address</th>
+                <th>Offering ₹</th>
+                <th>Payment / UTR</th>
+                <th>Dispatch</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="adminOrdersTableBody">
+              <tr><td colspan="8" class="text-center">Loading orders...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Pane 2: Items & Rates Management -->
+      <div class="admin-tab-pane" id="paneAdminProducts">
+        <div class="admin-add-product-box">
+          <h4 style="color:var(--maroon); margin-bottom:10px;">➕ Add New Sacred Item to Store</h4>
+          <form onsubmit="handleAddProduct(event)" class="form-grid-3">
+            <div>
+              <label><small>Item Name *</small></label>
+              <input type="text" id="newProdName" required placeholder="e.g. Energized Sphatik Mala">
+            </div>
+            <div>
+              <label><small>Category *</small></label>
+              <select id="newProdCategory" required>
+                <option value="3">Audumbar & Malas</option>
+                <option value="1">Dattatreya Murtis</option>
+                <option value="2">Sacred Padukas & Yantras</option>
+                <option value="4">Guru Charitra & Scriptures</option>
+                <option value="5">Datta Pooja Essentials</option>
+              </select>
+            </div>
+            <div>
+              <label><small>Rate / Price (₹) *</small></label>
+              <input type="number" id="newProdPrice" required min="1" step="0.01" placeholder="e.g. 1499">
+            </div>
+            <div>
+              <label><small>Stock Quantity *</small></label>
+              <input type="number" id="newProdStock" required min="0" value="20">
+            </div>
+            <div>
+              <label><small>Tag / Consecration</small></label>
+              <input type="text" id="newProdTag" value="CONSECRATED" placeholder="e.g. BESTSELLER">
+            </div>
+            <div style="display:flex; align-items:flex-end;">
+              <button type="submit" class="btn-submit" style="width:100%;">+ Add Item</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="admin-orders-toolbar">
+          <span>Manage Existing Items & Change Rates</span>
+          <button class="btn-refresh-orders" onclick="loadAdminProductsTable()">🔄 Refresh Items</button>
+        </div>
+        <div class="orders-table-scroll">
+          <table class="admin-orders-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Item Name</th>
+                <th>Category</th>
+                <th>Current Rate (₹)</th>
+                <th>Stock</th>
+                <th>Tag</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="adminProductsTableBody">
+              <tr><td colspan="7" class="text-center">Loading items...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Pane 3: Devotee Issues & Inquiries -->
+      <div class="admin-tab-pane" id="paneAdminIssues">
+        <div class="admin-orders-toolbar">
+          <span id="adminIssuesCount">Devotee Issues: Loading...</span>
+          <button class="btn-refresh-orders" onclick="loadAdminIssues()">🔄 Refresh Issues</button>
+        </div>
+        <div class="orders-table-scroll">
+          <table class="admin-orders-table">
+            <thead>
+              <tr>
+                <th>Issue ID</th>
+                <th>Devotee</th>
+                <th>Contact</th>
+                <th>Order No</th>
+                <th>Type</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="adminIssuesTableBody">
+              <tr><td colspan="8" class="text-center">Loading issues...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-cancel" onclick="closeAdminOrdersModal()">Close Control Center</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====================================================
+       13.5 DEVOTEE HELPDESK / SUBMIT ISSUE MODAL
+       ==================================================== -->
+  <div class="modal" id="issueModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4>💬 Devotee Helpdesk & Issue Support</h4>
+        <button class="close-icon" onclick="closeIssueModal()">&times;</button>
+      </div>
+      <form onsubmit="submitDevoteeIssue(event)" class="order-form">
+        <div class="form-group">
+          <label>Devotee Name *</label>
+          <input type="text" id="issueName" required placeholder="Your full name">
+        </div>
+        <div class="form-group">
+          <label>Phone Number *</label>
+          <input type="tel" id="issuePhone" required placeholder="Phone number">
+          <label class="whatsapp-checkbox-row">
+            <input type="checkbox" id="issueHasWhatsapp" checked>
+            <span>☑️ This number is on WhatsApp (for swift resolution)</span>
+          </label>
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="issueEmail" placeholder="yourname@gmail.com (optional)">
+        </div>
+        <div class="form-group">
+          <label>Order Number (If related to an order)</label>
+          <input type="text" id="issueOrderNo" placeholder="e.g. DIV-20260908... (optional)">
+        </div>
+        <div class="form-group">
+          <label>Issue Type *</label>
+          <select id="issueType" required>
+            <option value="Order Tracking & Delivery">📦 Order Tracking & Delivery</option>
+            <option value="Payment & UTR Verification">💳 Payment & UTR Verification</option>
+            <option value="Sacred Mala & Rudraksha Guidance">📿 Sacred Mala & Rudraksha Guidance</option>
+            <option value="Puja / Darshan Inquiry">🪷 Puja / Darshan Inquiry</option>
+            <option value="Other Issue">❓ Other Issue / Query</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Describe Your Issue *</label>
+          <textarea id="issueDesc" required rows="3" placeholder="Please describe your question or issue in detail..."></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-cancel" onclick="closeIssueModal()">Cancel</button>
+          <button type="submit" class="btn-submit" id="submitIssueBtn">Submit Issue 🙏</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ====================================================
+       14. ORDER CONFIRMATION MODAL
+       ==================================================== -->
+  <div class="modal" id="successModal">
+    <div class="modal-content text-center">
+      <div class="om-success pulse-animation">🕉️</div>
+      <h3>Guru Dattatreya Blessings!</h3>
+      <p>Your order has been recorded into the database.</p>
+      <div class="order-id-box">
+        <span>Order Tracking ID:</span>
+        <h4 id="confirmedOrderId">DIV-XXXXX</h4>
+      </div>
+      <button class="btn-submit" onclick="closeSuccessModal()">Continue Shopping</button>
+    </div>
+  </div>
+
+  <!-- ====================================================
+       14.5 INLINE SACRED VIDEO & SHORTS PLAYER MODAL
+       ==================================================== -->
+  <div class="modal" id="videoModal">
+    <div class="modal-content modal-video">
+      <div class="modal-header">
+        <h4 id="videoModalTitle">Sacred Pravachanam</h4>
+        <button class="close-icon" onclick="closeVideoModal()">&times;</button>
+      </div>
+      <div class="video-iframe-container">
+        <iframe id="videoIframe" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="modal-footer" style="justify-content: space-between; align-items: center;">
+        <a id="videoExternalLink" href="https://www.youtube.com/@Rushivani" target="_blank" class="yt-subscribe-btn">
+          ▶ Open on YouTube App
+        </a>
+        <button class="btn-cancel" style="flex: initial; padding: 6px 18px;" onclick="closeVideoModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====================================================
+       14.8 CONNECT WITH GURUJI & OFFICIAL SOCIAL COMMUNITY
+       ==================================================== -->
+  <section class="connect-section" id="connectSection">
+    <div class="container">
+      <div class="section-title-bar">
+        <div>
+          <span class="badge-red-live" style="background:#25D366;">🟢 OFFICIAL COMMUNITY & SATSANG</span>
+          <h3 class="section-heading">Connect With Guruji & Join Our Spiritual Family</h3>
+          <p class="section-subheading">Follow official Rushivani broadcasts, join our devotee WhatsApp group, and visit the Peetham portal</p>
+        </div>
+      </div>
+
+      <div class="social-grid">
+        <!-- 1. Official WhatsApp Group -->
+        <a href="https://chat.whatsapp.com/KgyjjEVbtuECHJtjUqaFOo" target="_blank" class="social-card whatsapp-card">
+          <div class="social-icon-box" style="background:#dcfce7; color:#25D366;">💬</div>
+          <h4>Official WhatsApp Group</h4>
+          <p>Daily morning Datta sankalpam, auspicious tithi alerts, live notification links & satsang guidance.</p>
+          <span class="social-btn whatsapp-btn">👉 Join Devotee Group</span>
+        </a>
+
+        <!-- 2. YouTube Subscribe (Rushivani) -->
+        <a href="https://www.youtube.com/channel/UCLVHMA1p2eglQPnjMxen7ng?sub_confirmation=1" target="_blank" class="social-card youtube-card">
+          <div class="social-icon-box" style="background:#fee2e2; color:#dc2626;">▶️</div>
+          <h4>Subscribe to RUSHIVANI</h4>
+          <p>Watch Guruji Dr. Shanmukha Srinivas daily pravachanams, astrology forecasts & Datta upasana.</p>
+          <span class="social-btn youtube-btn">🔔 Subscribe Channel</span>
+        </a>
+
+        <!-- 3. YouTube Community Tab -->
+        <a href="https://www.youtube.com/channel/UCLVHMA1p2eglQPnjMxen7ng/community" target="_blank" class="social-card youtube-card">
+          <div class="social-icon-box" style="background:#fef2f2; color:#b91c1c;">📢</div>
+          <h4>YouTube Community</h4>
+          <p>Real-time updates, world event predictions, upcoming live timings, and Peetham announcements.</p>
+          <span class="social-btn youtube-btn">📜 View Community Posts</span>
+        </a>
+
+        <!-- 4. Official Website -->
+        <a href="https://www.Gurudattapeetham.org" target="_blank" class="social-card website-card">
+          <div class="social-icon-box" style="background:#fef3c7; color:#d97706;">🌐</div>
+          <h4>Visit Our Website</h4>
+          <p>Guru Datta Peetham Charitable Trust (Reg No. 172/2022) official portal & charitable activities.</p>
+          <span class="social-btn website-btn">🕉️ Gurudattapeetham.org</span>
+        </a>
+
+        <!-- 5. Facebook Page -->
+        <a href="https://www.facebook.com/RushivaniFB" target="_blank" class="social-card facebook-card">
+          <div class="social-icon-box" style="background:#eff6ff; color:#1877F2;">👍</div>
+          <h4>Follow Us on Facebook</h4>
+          <p>Sacred photo galleries, spiritual quotes, video highlights & festival updates on Rushivani FB.</p>
+          <span class="social-btn facebook-btn">Follow @RushivaniFB</span>
+        </a>
+      </div>
+
+      <!-- JAI GURU DEVA DATTA BLESSED BANNER -->
+      <div class="jai-datta-banner">
+        <div class="jai-datta-title">✨ 🔱 JAI GURU DEVA DATTA 🔱 ✨</div>
+        <p style="margin:0; font-size:0.95rem; opacity:0.95;">
+          సర్వేజనాః సుఖినోభవంతు | సమస్త సన్మంగళాని భవంతు | శ్రీ గురుదేవ దత్త
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================
+       15. SITE FOOTER
+       ==================================================== -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="om-symbol-footer">ॐ</div>
+      <img src="/static/images/rushivani_logo.png" alt="Rushivani" style="max-height: 44px; margin-bottom: 8px;">
+      <h3>గురు దత్త పీఠం చారిటబుల్ ట్రస్ట్</h3>
+      <p>రి.నెం.172/2022 • సనాతన ధర్మ, దత్త భక్తి ప్రచార ధార్మిక సేవా సంస్థ</p>
+      <p class="channel-links">
+        <a href="https://chat.whatsapp.com/KgyjjEVbtuECHJtjUqaFOo" target="_blank" style="color:#25D366; font-weight:700;">🟢 WhatsApp Group</a> &bull;
+        <a href="https://www.youtube.com/channel/UCLVHMA1p2eglQPnjMxen7ng" target="_blank">YouTube: @Rushivani</a> &bull;
+        <a href="https://www.youtube.com/channel/UCLVHMA1p2eglQPnjMxen7ng/community" target="_blank">Community Tab</a> &bull;
+        <a href="https://www.Gurudattapeetham.org" target="_blank">Gurudattapeetham.org</a> &bull;
+        <a href="https://www.facebook.com/RushivaniFB" target="_blank">Facebook</a>
+      </p>
+      <p class="copyright">Crafted with devotion. Consecrated by Guruji Dr. Shanmukha Srinivas. JAI GURU DEVA DATTA.</p>
+    </div>
+  </footer>
+
+  <!-- ====================================================
+       16. NATIVE MOBILE APP BOTTOM NAVIGATION BAR
+       ==================================================== -->
+  <nav class="mobile-app-dock" aria-label="Mobile Navigation">
+    <a href="#homeSection" class="dock-item active">
+      <span class="dock-icon">🕉️</span>
+      <span class="dock-label">Home</span>
+    </a>
+    <a href="#storeSection" class="dock-item">
+      <span class="dock-icon">📿</span>
+      <span class="dock-label">Malas</span>
+    </a>
+    <a href="#shortsSection" class="dock-item">
+      <span class="dock-icon">⚡</span>
+      <span class="dock-label">Shorts</span>
+    </a>
+    <button class="dock-item" onclick="onMobileAuthClick()">
+      <span class="dock-icon" id="mobileAuthIcon">👑</span>
+      <span class="dock-label" id="mobileAuthLabel">Admin</span>
+    </button>
+    <button class="dock-item dock-cart-btn" onclick="toggleCart()">
+      <span class="dock-icon">🛍️</span>
+      <span class="dock-label">Cart</span>
+      <span class="dock-badge" id="mobileCartCount">0</span>
+    </button>
+  </nav>
+
+  <script src="/static/js/app.js"></script>
+</body>
+</html>

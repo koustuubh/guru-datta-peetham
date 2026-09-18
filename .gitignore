@@ -1,0 +1,10 @@
+# Python virtual environments & bytecode
+venv/
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+
+# Local logs & caches
+*.log
+.DS_Store

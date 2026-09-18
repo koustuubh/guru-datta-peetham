@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="100%" height="100%">
+  <defs>
+    <radialGradient id="ebonyWood" cx="35%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#4a4a4a"/>
+      <stop offset="40%" stop-color="#1f1f1f"/>
+      <stop offset="90%" stop-color="#0a0a0a"/>
+      <stop offset="100%" stop-color="#000000"/>
+    </radialGradient>
+    <linearGradient id="silverShine" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="50%" stop-color="#d1d5db"/>
+      <stop offset="100%" stop-color="#9ca3af"/>
+    </linearGradient>
+    <radialGradient id="goldAura" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fef3c7" stop-opacity="0.8"/>
+      <stop offset="60%" stop-color="#f59e0b" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#ea580c" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Aura Background -->
+  <circle cx="150" cy="150" r="140" fill="url(#goldAura)"/>
+
+  <!-- Karungali (Ebony Wood) Mala Loop -->
+  <g transform="translate(150, 140)">
+    <!-- Mala Beads in Circular Arc -->
+    <!-- 24 stylized circular beads forming the sacred necklace -->
+    <path d="M 0,-95 A 95,95 0 1,1 -0.1,-95" fill="none" stroke="#78350f" stroke-width="2" stroke-dasharray="2,2"/>
+    
+    <!-- Beads -->
+    <circle cx="0" cy="-95" r="13" fill="url(#ebonyWood)" stroke="#111" stroke-width="1"/>
+    <circle cx="28" cy="-90" r="12" fill="url(#ebonyWood)"/>
+    <circle cx="55" cy="-77" r="12" fill="url(#ebonyWood)"/>
+    <circle cx="77" cy="-55" r="12" fill="url(#ebonyWood)"/>
+    <circle cx="90" cy="-28" r="12" fill="url(#ebonyWood)"/>
+    <circle cx="95" cy="0" r="13" fill="url(#ebonyWood)"/>
+    <circle cx="90" cy="28" r="12" fill="url(#ebonyWood)"/>
+    <circle cx="77" cy="55" r="12" fill="url(#ebonyWood)"/>
+    <circle cx="55" cy="77" r="12" fill="url(#ebonyWood)"/>
+    <circle cx="28" cy="90" r="12" fill="url(#ebonyWood)"/>
+
+    <circle cx="-28" cy="-90" r="12" fill="url(#ebonyWood)"/>
+    <circle cx="-55" cy="-77" r="12" fill="url(#ebonyWood)"/>
+    <circle cx="-77" cy="-55" r="12" fill="url(#ebonyWood)"/>
+    <circle cx="-90" cy="-28" r="12" fill="url(#ebonyWood)"/>
+    <circle cx="-95" cy="0" r="13" fill="url(#ebonyWood)"/>
+    <circle cx="-90" cy="28" r="12" fill="url(#ebonyWood)"/>
+    <circle cx="-77" cy="55" r="12" fill="url(#ebonyWood)"/>
+    <circle cx="-55" cy="77" r="12" fill="url(#ebonyWood)"/>
+    <circle cx="-28" cy="90" r="12" fill="url(#ebonyWood)"/>
+
+    <!-- Guru Bead (Center Bottom with Silver Capping) -->
+    <circle cx="0" cy="96" r="16" fill="url(#ebonyWood)"/>
+    <path d="M -12,96 Q 0,86 12,96 L 10,102 Q 0,92 -10,102 Z" fill="url(#silverShine)"/>
+    <!-- Silver Conical Cap -->
+    <polygon points="-8,108 8,108 0,118" fill="url(#silverShine)"/>
+
+    <!-- Sacred Red / Saffron Tassel -->
+    <path d="M -6,118 L -10,150 Q 0,154 10,150 L 6,118 Z" fill="#ea580c"/>
+    <rect x="-7" y="117" width="14" height="4" fill="#fbbf24" rx="2"/>
+    <!-- Tassel strands -->
+    <line x1="-6" y1="130" x2="-8" y2="152" stroke="#c2410c" stroke-width="1.5"/>
+    <line x1="0" y1="130" x2="0" y2="154" stroke="#fbbf24" stroke-width="1.5"/>
+    <line x1="6" y1="130" x2="8" y2="152" stroke="#c2410c" stroke-width="1.5"/>
+  </g>
+
+  <!-- Title Badge -->
+  <rect x="50" y="260" width="200" height="26" rx="13" fill="#18181b" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="150" y="278" font-family="'Cinzel', serif" font-size="12" font-weight="700" fill="#fef08a" text-anchor="middle" letter-spacing="1">
+    ORIGINAL KARUNGALI
+  </text>
+</svg>

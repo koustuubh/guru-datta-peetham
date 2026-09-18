@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="100%" height="100%">
+  <defs>
+    <radialGradient id="blackAgate" cx="30%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#475569"/>
+      <stop offset="30%" stop-color="#1e293b"/>
+      <stop offset="80%" stop-color="#090d16"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </radialGradient>
+    <radialGradient id="agateShine" cx="25%" cy="25%" r="40%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="silverBand" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f1f5f9"/>
+      <stop offset="50%" stop-color="#94a3b8"/>
+      <stop offset="100%" stop-color="#475569"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Aura Background -->
+  <circle cx="150" cy="150" r="140" fill="#f8fafc"/>
+  <circle cx="150" cy="150" r="130" fill="none" stroke="#e2e8f0" stroke-width="2"/>
+
+  <!-- Hakik (Agate) Mala -->
+  <g transform="translate(150, 140)">
+    <circle cx="0" cy="-90" r="13" fill="url(#blackAgate)"/>
+    <circle cx="0" cy="-90" r="13" fill="url(#agateShine)"/>
+
+    <circle cx="28" cy="-86" r="12" fill="url(#blackAgate)"/>
+    <circle cx="54" cy="-73" r="12" fill="url(#blackAgate)"/>
+    <circle cx="75" cy="-52" r="12" fill="url(#blackAgate)"/>
+    <circle cx="87" cy="-26" r="12" fill="url(#blackAgate)"/>
+    <circle cx="92" cy="0" r="13" fill="url(#blackAgate)"/>
+    <circle cx="87" cy="26" r="12" fill="url(#blackAgate)"/>
+    <circle cx="75" cy="52" r="12" fill="url(#blackAgate)"/>
+    <circle cx="54" cy="73" r="12" fill="url(#blackAgate)"/>
+    <circle cx="28" cy="86" r="12" fill="url(#blackAgate)"/>
+
+    <circle cx="-28" cy="-86" r="12" fill="url(#blackAgate)"/>
+    <circle cx="-54" cy="-73" r="12" fill="url(#blackAgate)"/>
+    <circle cx="-75" cy="-52" r="12" fill="url(#blackAgate)"/>
+    <circle cx="-87" cy="-26" r="12" fill="url(#blackAgate)"/>
+    <circle cx="-92" cy="0" r="13" fill="url(#blackAgate)"/>
+    <circle cx="-87" cy="26" r="12" fill="url(#blackAgate)"/>
+    <circle cx="-75" cy="52" r="12" fill="url(#blackAgate)"/>
+    <circle cx="-54" cy="73" r="12" fill="url(#blackAgate)"/>
+    <circle cx="-28" cy="86" r="12" fill="url(#blackAgate)"/>
+
+    <!-- Central Guru Agate with Silver Capping -->
+    <circle cx="0" cy="95" r="17" fill="url(#blackAgate)"/>
+    <circle cx="0" cy="95" r="17" fill="url(#agateShine)"/>
+    <rect x="-14" y="93" width="28" height="4" fill="url(#silverBand)" rx="2"/>
+
+    <!-- Sacred Red Silk Tassel -->
+    <polygon points="-7,112 7,112 0,122" fill="url(#silverBand)"/>
+    <path d="M -7,122 L -10,154 Q 0,158 10,154 L 7,122 Z" fill="#b91c1c"/>
+    <rect x="-8" y="121" width="16" height="3" fill="#f59e0b" rx="1"/>
+  </g>
+
+  <!-- Title Badge -->
+  <rect x="50" y="260" width="200" height="26" rx="13" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5"/>
+  <text x="150" y="278" font-family="'Cinzel', serif" font-size="12" font-weight="700" fill="#e0f2fe" text-anchor="middle" letter-spacing="1">
+    NATURAL HAKIK MALA
+  </text>
+</svg>
