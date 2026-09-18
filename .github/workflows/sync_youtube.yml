@@ -1,0 +1,45 @@
+name: Sync YouTube Feed & Community Posts
+
+on:
+  schedule:
+    # Run every 2 hours
+    - cron: '0 */2 * * *'
+  workflow_dispatch: # Allows manual trigger from GitHub UI
+  push:
+    branches:
+      - main
+    paths:
+      - 'scripts/**'
+      - 'youtube_service.py'
+
+permissions:
+  contents: write
+
+jobs:
+  sync-youtube:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run YouTube Sync Script
+        run: |
+          python scripts/sync_youtube.py
+
+      - name: Commit and push if changed
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add static/data/youtube_feed.json static/data/youtube_posts.json
+          if ! git diff --staged --quiet; then
+            git commit -m "Auto-sync: Update Rushivani YouTube feed & community posts [skip ci]"
+            git push
+          else
+            echo "No new YouTube updates detected."
+          fi

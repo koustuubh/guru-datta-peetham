@@ -902,54 +902,68 @@ async function loadRealtimeYouTubeContent() {
   const shortsContainer = document.getElementById('shortsGrid');
   const videosContainer = document.getElementById('videosGrid');
 
+  let data = null;
   try {
     const res = await fetch('/api/youtube/feed');
-    const data = await res.json();
+    if (res.ok) {
+      data = await res.json();
+    }
+  } catch (e) {
+    // Backend API not reachable (e.g. static hosting on GitHub Pages)
+  }
 
-    if (!res.ok || !data.shorts || !data.videos) return;
+  if (!data || !data.shorts || !data.videos) {
+    try {
+      const res = await fetch('static/data/youtube_feed.json');
+      if (res.ok) {
+        data = await res.json();
+      }
+    } catch (e) {
+      console.warn("Fallback feed fetch failed:", e);
+    }
+  }
 
-    // Render Real-Time Shorts with Automatic Thumbnails
-    if (data.shorts.length > 0 && shortsContainer) {
-      shortsContainer.innerHTML = data.shorts.slice(0, 6).map(short => `
-        <a href="${short.url}" target="_blank" class="short-card">
-          <div class="short-thumb-wrapper">
-            <img src="${short.thumbnail}" alt="${short.title}" loading="lazy" onerror="this.src='https://i.ytimg.com/vi/${short.id}/0.jpg'">
-            <div class="short-overlay">
-              <span class="short-play-btn">▶</span>
-              <span class="short-tag">⚡ Short</span>
-            </div>
+  if (!data || !data.shorts || !data.videos) return;
+
+  // Render Real-Time Shorts with Automatic Thumbnails
+  if (data.shorts.length > 0 && shortsContainer) {
+    shortsContainer.innerHTML = data.shorts.slice(0, 6).map(short => `
+      <a href="${short.url}" target="_blank" class="short-card">
+        <div class="short-thumb-wrapper">
+          <img src="${short.thumbnail}" alt="${short.title}" loading="lazy" onerror="this.src='https://i.ytimg.com/vi/${short.id}/0.jpg'">
+          <div class="short-overlay">
+            <span class="short-play-btn">▶</span>
+            <span class="short-tag">⚡ Short</span>
           </div>
-          <div class="short-info">
-            <h4>${short.title}</h4>
-            <span>@Rushivani • Click to Watch</span>
+        </div>
+        <div class="short-info">
+          <h4>${short.title}</h4>
+          <span>@Rushivani • Click to Watch</span>
+        </div>
+      </a>
+    `).join('');
+  }
+
+  // Render Real-Time Videos with Automatic Thumbnails & Inline Player
+  if (data.videos.length > 0 && videosContainer) {
+    videosContainer.innerHTML = data.videos.slice(0, 6).map(video => `
+      <article class="video-card">
+        <a href="${video.url}" target="_blank" style="text-decoration:none; color:inherit;">
+          <div class="video-thumbnail">
+            <div class="yt-play-overlay">▶</div>
+            <img src="${video.thumbnail}" alt="${video.title}" loading="lazy" onerror="this.src='https://i.ytimg.com/vi/${video.id}/0.jpg'">
+            <span class="video-duration">Pravachanam</span>
           </div>
         </a>
-      `).join('');
-    }
-
-    // Render Real-Time Videos with Automatic Thumbnails & Inline Player
-    if (data.videos.length > 0 && videosContainer) {
-      videosContainer.innerHTML = data.videos.slice(0, 6).map(video => `
-        <article class="video-card">
-          <a href="${video.url}" target="_blank" style="text-decoration:none; color:inherit;">
-            <div class="video-thumbnail">
-              <div class="yt-play-overlay">▶</div>
-              <img src="${video.thumbnail}" alt="${video.title}" loading="lazy" onerror="this.src='https://i.ytimg.com/vi/${video.id}/0.jpg'">
-              <span class="video-duration">Pravachanam</span>
-            </div>
-          </a>
-          <div class="video-details">
-            <h4>${video.title}</h4>
-            <div class="video-action-row">
-              <a href="${video.url}" target="_blank" class="watch-now-btn">Watch on YouTube ▶</a>
-              <button class="btn-play-inline" onclick="playVideoModal('${video.id}', '${video.title.replace(/'/g, "\\'")}')">Play Here 📺</button>
-            </div>
+        <div class="video-details">
+          <h4>${video.title}</h4>
+          <div class="video-action-row">
+            <a href="${video.url}" target="_blank" class="watch-now-btn">Watch on YouTube ▶</a>
+            <button class="btn-play-inline" onclick="playVideoModal('${video.id}', '${video.title.replace(/'/g, "\\'")}')">Play Here 📺</button>
           </div>
-        </article>
-      `).join('');
-    }
-  } catch (err) {
-    console.warn("Using default real-time cards, feed fetch:", err);
+        </div>
+      </article>
+    `).join('');
   }
 }
 
@@ -980,50 +994,64 @@ async function loadRealtimeCommunityPosts() {
   const container = document.getElementById('communityGrid');
   if (!container) return;
 
+  let data = null;
   try {
     const res = await fetch('/api/youtube/posts');
-    const data = await res.json();
-
-    if (!res.ok || !data.posts || data.posts.length === 0) return;
-
-    container.innerHTML = data.posts.slice(0, 6).map(post => {
-      const primaryImg = (post.images && post.images.length > 0) ? post.images[0] : null;
-      const imgMarkup = primaryImg ? `
-        <div class="post-image-banner">
-          <a href="${post.url}" target="_blank" style="width:100%; height:100%; display:block;">
-            <img src="${primaryImg}" alt="${(post.title || '').replace(/"/g, '&quot;')}" class="post-featured-media" style="width:100%; height:100%; object-fit:cover;" loading="lazy">
-          </a>
-        </div>
-      ` : '';
-
-      let tagClass = 'mala-tag';
-      if (post.tag && post.tag.includes('భవిష్య')) tagClass = 'festival-tag';
-      else if (post.tag && post.tag.includes('లైవ్')) tagClass = 'aarti-tag';
-
-      return `
-        <article class="post-card premium-card">
-          <div class="post-header-row">
-            <div class="author-avatar-box">
-              <img src="static/images/guruji.png" alt="Rushivani" class="author-avatar">
-              <div>
-                <strong>Rushivani ఋషివాణి</strong>
-                <span class="author-handle">@Rushivani • ${post.published || 'Recent'}</span>
-              </div>
-            </div>
-            <span class="post-tag ${tagClass}">${post.tag || '📢 తాజా అప్డేట్'}</span>
-          </div>
-          ${imgMarkup}
-          <h4 class="post-title">${post.title || 'Rushivani Community Post'}</h4>
-          <p class="post-content">${post.content || ''}</p>
-          <div class="post-footer">
-            <span class="post-likes">❤️ YouTube Community</span>
-            <a href="${post.url}" target="_blank" class="post-yt-btn">View on YouTube ▶</a>
-          </div>
-        </article>
-      `;
-    }).join('');
-  } catch (err) {
-    console.warn("Could not fetch realtime community posts:", err);
+    if (res.ok) {
+      data = await res.json();
+    }
+  } catch (e) {
+    // Backend API not reachable (e.g. static hosting on GitHub Pages)
   }
+
+  if (!data || !data.posts || data.posts.length === 0) {
+    try {
+      const res = await fetch('static/data/youtube_posts.json');
+      if (res.ok) {
+        data = await res.json();
+      }
+    } catch (e) {
+      console.warn("Fallback community posts fetch failed:", e);
+    }
+  }
+
+  if (!data || !data.posts || data.posts.length === 0) return;
+
+  container.innerHTML = data.posts.slice(0, 6).map(post => {
+    const primaryImg = (post.images && post.images.length > 0) ? post.images[0] : null;
+    const imgMarkup = primaryImg ? `
+      <div class="post-image-banner">
+        <a href="${post.url}" target="_blank" style="width:100%; height:100%; display:block;">
+          <img src="${primaryImg}" alt="${(post.title || '').replace(/"/g, '&quot;')}" class="post-featured-media" style="width:100%; height:100%; object-fit:cover;" loading="lazy">
+        </a>
+      </div>
+    ` : '';
+
+    let tagClass = 'mala-tag';
+    if (post.tag && post.tag.includes('భవిష్య')) tagClass = 'festival-tag';
+    else if (post.tag && post.tag.includes('లైవ్')) tagClass = 'aarti-tag';
+
+    return `
+      <article class="post-card premium-card">
+        <div class="post-header-row">
+          <div class="author-avatar-box">
+            <img src="static/images/guruji.png" alt="Rushivani" class="author-avatar">
+            <div>
+              <strong>Rushivani ఋషివాణి</strong>
+              <span class="author-handle">@Rushivani • ${post.published || 'Recent'}</span>
+            </div>
+          </div>
+          <span class="post-tag ${tagClass}">${post.tag || '📢 తాజా అప్డేట్'}</span>
+        </div>
+        ${imgMarkup}
+        <h4 class="post-title">${post.title || 'Rushivani Community Post'}</h4>
+        <p class="post-content">${post.content || ''}</p>
+        <div class="post-footer">
+          <span class="post-likes">❤️ YouTube Community</span>
+          <a href="${post.url}" target="_blank" class="post-yt-btn">View on YouTube ▶</a>
+        </div>
+      </article>
+    `;
+  }).join('');
 }
 
