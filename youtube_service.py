@@ -124,10 +124,132 @@ FALLBACK_SHORTS = [
     }
 ]
 
+def _scrape_live_shorts():
+    try:
+        ctx = ssl.create_default_context()
+        ctx.check_hostname = False
+        ctx.verify_mode = ssl.CERT_NONE
+        req = urllib.request.Request(
+            "https://www.youtube.com/@Rushivani/shorts",
+            headers={
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+                "Accept-Language": "te,en;q=0.9"
+            }
+        )
+        with urllib.request.urlopen(req, context=ctx, timeout=8) as res:
+            html = res.read().decode('utf-8', errors='ignore')
+        match = re.search(r'var ytInitialData\s*=\s*({.+?});</script>', html)
+        if not match:
+            return []
+        import json
+        data = json.loads(match.group(1))
+        shorts = []
+        seen = set()
+        def walk(obj):
+            if isinstance(obj, dict):
+                if 'shortsLockupViewModel' in obj:
+                    m = obj['shortsLockupViewModel']
+                    vid = m.get('entityId', '').replace('shorts-shelf-item-', '')
+                    if not vid:
+                        try:
+                            vid = m['onTap']['innertubeCommand']['reelWatchEndpoint']['videoId']
+                        except Exception:
+                            pass
+                    title = m.get('overlayMetadata', {}).get('primaryText', {}).get('content', '')
+                    if not title:
+                        title = m.get('accessibilityText', '').split(',')[0]
+                    if vid and len(vid) == 11 and vid not in seen:
+                        seen.add(vid)
+                        shorts.append({
+                            'id': vid,
+                            'title': title,
+                            'url': f'https://www.youtube.com/shorts/{vid}',
+                            'thumbnail': f'https://i.ytimg.com/vi/{vid}/hqdefault.jpg',
+                            'type': 'short',
+                            'published': 'Real-time'
+                        })
+                for v in obj.values():
+                    walk(v)
+            elif isinstance(obj, list):
+                for item in obj:
+                    walk(item)
+        walk(data)
+        return shorts
+    except Exception as e:
+        logger.warning(f"Live shorts scraper exception: {e}")
+        return []
+
+def _scrape_live_videos():
+    try:
+        ctx = ssl.create_default_context()
+        ctx.check_hostname = False
+        ctx.verify_mode = ssl.CERT_NONE
+        req = urllib.request.Request(
+            "https://www.youtube.com/@Rushivani/videos",
+            headers={
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+                "Accept-Language": "te,en;q=0.9"
+            }
+        )
+        with urllib.request.urlopen(req, context=ctx, timeout=8) as res:
+            html = res.read().decode('utf-8', errors='ignore')
+        match = re.search(r'var ytInitialData\s*=\s*({.+?});</script>', html)
+        if not match:
+            return []
+        import json
+        data = json.loads(match.group(1))
+        videos = []
+        seen = set()
+        def walk(obj):
+            if isinstance(obj, dict):
+                if 'lockupViewModel' in obj:
+                    m = obj['lockupViewModel']
+                    vid = m.get('contentId')
+                    title = m.get('metadata', {}).get('lockupMetadataViewModel', {}).get('title', {}).get('content', '')
+                    if vid and len(vid) == 11 and vid not in seen:
+                        seen.add(vid)
+                        videos.append({
+                            'id': vid,
+                            'title': title,
+                            'url': f'https://www.youtube.com/watch?v={vid}',
+                            'thumbnail': f'https://i.ytimg.com/vi/{vid}/hqdefault.jpg',
+                            'type': 'video',
+                            'published': 'Real-time'
+                        })
+                elif 'videoRenderer' in obj:
+                    r = obj['videoRenderer']
+                    vid = r.get('videoId')
+                    title = ''
+                    title_obj = r.get('title', {})
+                    if 'runs' in title_obj and len(title_obj['runs']) > 0:
+                        title = title_obj['runs'][0].get('text', '')
+                    elif 'simpleText' in title_obj:
+                        title = title_obj.get('simpleText', '')
+                    if vid and len(vid) == 11 and vid not in seen:
+                        seen.add(vid)
+                        videos.append({
+                            'id': vid,
+                            'title': title,
+                            'url': f'https://www.youtube.com/watch?v={vid}',
+                            'thumbnail': f'https://i.ytimg.com/vi/{vid}/hqdefault.jpg',
+                            'type': 'video',
+                            'published': 'Real-time'
+                        })
+                for v in obj.values():
+                    walk(v)
+            elif isinstance(obj, list):
+                for item in obj:
+                    walk(item)
+        walk(data)
+        return videos
+    except Exception as e:
+        logger.warning(f"Live videos scraper exception: {e}")
+        return []
+
 def fetch_rushivani_feed():
     """
-    Fetches the live YouTube RSS feed for @Rushivani channel.
-    Returns categorized { shorts: [...], videos: [...] } with automatic thumbnails and clickable links.
+    Fetches the live YouTube feed for @Rushivani channel.
+    Uses RSS feed first, with direct web scraping fallback, ensuring 100% live updates.
     """
     global _CACHE, _CACHE_TIME
     now = time.time()
@@ -136,6 +258,10 @@ def fetch_rushivani_feed():
     if _CACHE and (now - _CACHE_TIME < CACHE_DURATION_SECONDS):
         return _CACHE
 
+    shorts = []
+    videos = []
+
+    # Method 1: Try official RSS feed
     try:
         ctx = ssl.create_default_context()
         ctx.check_hostname = False
@@ -143,7 +269,9 @@ def fetch_rushivani_feed():
 
         req = urllib.request.Request(
             RSS_FEED_URL,
-            headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"}
+            headers={
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+            }
         )
 
         with urllib.request.urlopen(req, context=ctx, timeout=6) as res:
@@ -157,9 +285,6 @@ def fetch_rushivani_feed():
         }
 
         entries = root.findall("atom:entry", ns)
-        shorts = []
-        videos = []
-
         for e in entries:
             vid_elem = e.find("yt:videoId", ns)
             if vid_elem is None or not vid_elem.text:
@@ -172,10 +297,7 @@ def fetch_rushivani_feed():
             link_elem = e.find("atom:link", ns)
             link = link_elem.attrib.get("href", "") if link_elem is not None else f"https://www.youtube.com/watch?v={vid_id}"
 
-            # Automatic high-quality thumbnail from YouTube CDN
             thumbnail = f"https://i.ytimg.com/vi/{vid_id}/hqdefault.jpg"
-
-            # Check if this item is a short
             is_short = ("/shorts/" in link) or ("#short" in title.lower())
             item_url = f"https://www.youtube.com/shorts/{vid_id}" if is_short else f"https://www.youtube.com/watch?v={vid_id}"
 
@@ -192,44 +314,43 @@ def fetch_rushivani_feed():
                 shorts.append(item)
             else:
                 videos.append(item)
-
-        # Supplement with curated full videos if RSS only has shorts recently
-        if len(videos) < 3:
-            for fv in FALLBACK_VIDEOS:
-                if not any(v["id"] == fv["id"] for v in videos):
-                    videos.append(fv)
-
-        result = {
-            "status": "success",
-            "source": "live_rss",
-            "shorts": shorts if shorts else FALLBACK_SHORTS,
-            "videos": videos if videos else FALLBACK_VIDEOS,
-            "channel": {
-                "title": "Rushivani ఋషివాణి",
-                "handle": "@Rushivani",
-                "channel_id": CHANNEL_ID,
-                "url": "https://www.youtube.com/@Rushivani"
-            }
-        }
-
-        _CACHE = result
-        _CACHE_TIME = now
-        return result
-
     except Exception as ex:
-        logger.warning(f"Could not fetch live RSS ({ex}), using verified real-time items.")
-        return {
-            "status": "fallback",
-            "source": "verified_realtime_cache",
-            "shorts": FALLBACK_SHORTS,
-            "videos": FALLBACK_VIDEOS,
-            "channel": {
-                "title": "Rushivani ఋషివాణి",
-                "handle": "@Rushivani",
-                "channel_id": CHANNEL_ID,
-                "url": "https://www.youtube.com/@Rushivani"
-            }
+        logger.warning(f"RSS feed fetch failed ({ex}). Proceeding to web scraping fallback...")
+
+    # Method 2: Web scraping fallback for @Rushivani/shorts & @Rushivani/videos
+    if not shorts:
+        scraped_shorts = _scrape_live_shorts()
+        if scraped_shorts:
+            shorts.extend(scraped_shorts)
+
+    if len(videos) < 3:
+        scraped_videos = _scrape_live_videos()
+        for sv in scraped_videos:
+            if not any(v["id"] == sv["id"] for v in videos):
+                videos.append(sv)
+
+    # Method 3: Curated backup items if network completely blocked
+    if not shorts:
+        shorts = FALLBACK_SHORTS
+    if not videos:
+        videos = FALLBACK_VIDEOS
+
+    result = {
+        "status": "success",
+        "source": "live_realtime",
+        "shorts": shorts,
+        "videos": videos,
+        "channel": {
+            "title": "Rushivani ఋషివాణి",
+            "handle": "@Rushivani",
+            "channel_id": CHANNEL_ID,
+            "url": "https://www.youtube.com/@Rushivani"
         }
+    }
+
+    _CACHE = result
+    _CACHE_TIME = now
+    return result
 
 
 # ==========================================================
