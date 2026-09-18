@@ -37,27 +37,59 @@ document.addEventListener('DOMContentLoaded', () => {
 // 2. CATEGORIES & PRODUCTS (SACRED STORE)
 // ==========================================================
 
-// Fetch categories from Python backend
+const FALLBACK_CATEGORIES = [
+  { category_id: 3, category_name: 'Audumbar & Malas' },
+  { category_id: 1, category_name: 'Dattatreya Murtis' },
+  { category_id: 2, category_name: 'Sacred Padukas & Yantras' },
+  { category_id: 4, category_name: 'Guru Charitra & Scriptures' },
+  { category_id: 5, category_name: 'Datta Pooja Essentials' }
+];
+
+const FALLBACK_PRODUCTS = [
+  { product_id: 1, category_id: 1, name: 'Pure Brass Lord Dattatreya Idol with Arch (7 inch)', price: 2499, original_price: 3200, stock_quantity: 20, tag: 'SACRED', image_url: 'dattatreya', description: 'Exquisite 3-faced Lord Dattatreya (Brahma, Vishnu, Maheshwara) surrounded by 4 sacred Vedas as dogs and Kamadhenu.' },
+  { product_id: 2, category_id: 2, name: 'Consecrated Brass Datta Charan Paduka (Holy Feet)', price: 1299, original_price: 1750, stock_quantity: 35, tag: 'HOLY FEET', image_url: 'paduka', description: 'Heavy solid brass lotus footprints of Lord Dattatreya embossed with auspicious Ashtamangala signs.' },
+  { product_id: 3, category_id: 3, name: 'Original Karungali Mala (108 Ebony Wood Beads, 8mm)', price: 1499, original_price: 1999, stock_quantity: 40, tag: 'BESTSELLER', image_url: 'karungali', description: 'Authentic black ebony wood (Karungali) energized at the Peetham. Shields against negative energies and pacifies Mars dosha.' },
+  { product_id: 4, category_id: 3, name: 'Natural Black Hakik Mala (108 Beads with Silver Cap)', price: 899, original_price: 1250, stock_quantity: 45, tag: 'EVIL EYE REMEDY', image_url: 'hakik', description: 'Pure certified Kala Akik (Black Agate) energized with Datta Kavacham. Shields from evil eye (Drishti).' },
+  { product_id: 5, category_id: 3, name: 'Energized Red Hakik Mala (Lal Akik, 108 Beads)', price: 950, original_price: 1300, stock_quantity: 30, tag: 'VITALITY', image_url: 'hakik', description: 'Natural Red Agate beads strung on durable sacred thread. Enhances physical vitality and courage.' },
+  { product_id: 6, category_id: 3, name: 'Lab-Certified 5-Mukhi Nepali Rudraksha Mala (108 Beads)', price: 1299, original_price: 1800, stock_quantity: 50, tag: 'CERTIFIED', image_url: 'rudraksha_mala', description: 'Premium authentic 5-Mukhi Nepali Rudraksha beads with silver capping. Ideal for daily mantra japa.' },
+  { product_id: 7, category_id: 3, name: 'Rare Natural 1-Mukhi (Ek Mukhi) Rudraksha in Pure Silver', price: 3499, original_price: 4500, stock_quantity: 10, tag: 'RARE / SHIVA', image_url: 'ek_mukhi', description: 'Exceedingly rare cashew-shaped 1-Mukhi Rudraksha mounted in pure 925 silver capping.' },
+  { product_id: 8, category_id: 3, name: 'Sacred Gauri Shankar Rudraksha (Joined Shiva-Parvati)', price: 2999, original_price: 3800, stock_quantity: 15, tag: 'HARMONY', image_url: 'gauri_shankar', description: 'Two naturally conjoined sacred Rudraksha beads representing Shiva and Shakti.' },
+  { product_id: 9, category_id: 3, name: 'Authentic Audumbar Wood Japa Mala (108 Beads)', price: 699, original_price: 950, stock_quantity: 50, tag: 'ENERGIZED', image_url: 'mala', description: 'Natural beads crafted from the holy Audumbara (Fig) tree beloved by Lord Dattatreya.' },
+  { product_id: 10, category_id: 4, name: 'Shri Guru Charitra Sacred Pothi (Hardcover)', price: 850, original_price: 1100, stock_quantity: 40, tag: 'MUST READ', image_url: 'charitra', description: 'The divine scripture detailing the leelas of Lord Dattatreya, Sripada Srivallabha, and Sri Narasimha Saraswati.' },
+  { product_id: 11, category_id: 2, name: 'Energized Copper Dattatreya Mahayantra (3x3 inch)', price: 799, original_price: 1050, stock_quantity: 30, tag: 'PROTECTION', image_url: 'yantra', description: 'Pure copper sacred geometric yantra blessed by Vedic priests to magnetize divine wisdom and family harmony.' },
+  { product_id: 12, category_id: 5, name: 'Girnar Ashta-Gandha Pure Sandalwood Chandan (100g)', price: 349, original_price: 450, stock_quantity: 100, tag: 'FRAGRANT', image_url: 'chandan', description: 'Original saffron and sandalwood paste prepared according to ancient temple recipes for Lord Dattatreya tilak.' }
+];
+
+// Fetch categories from Python backend or fallback
 async function loadCategories() {
+  const container = document.getElementById('categoryButtons');
+  if (!container) return;
   try {
     const res = await fetch('/api/categories');
+    if (!res.ok) throw new Error('API unavailable');
     const categories = await res.json();
-    const container = document.getElementById('categoryButtons');
-    
-    // Create button for each category
-    categories.forEach(cat => {
-      const btn = document.createElement('button');
-      btn.className = 'cat-btn';
-      btn.textContent = cat.category_name;
-      btn.onclick = () => selectCategory(cat.category_id, btn);
-      container.appendChild(btn);
-    });
+    renderCategoryButtons(categories);
   } catch (err) {
-    console.error("Could not load categories", err);
+    renderCategoryButtons(FALLBACK_CATEGORIES);
   }
 }
 
-// Fetch products from backend
+function renderCategoryButtons(categories) {
+  const container = document.getElementById('categoryButtons');
+  if (!container) return;
+  const existingButtons = container.querySelectorAll('.cat-btn:not(:first-child)');
+  existingButtons.forEach(b => b.remove());
+
+  categories.forEach(cat => {
+    const btn = document.createElement('button');
+    btn.className = 'cat-btn';
+    btn.textContent = cat.category_name;
+    btn.onclick = () => selectCategory(cat.category_id, btn);
+    container.appendChild(btn);
+  });
+}
+
+// Fetch products from backend or fallback
 async function loadProducts(search = '') {
   const grid = document.getElementById('productGrid');
   grid.innerHTML = '<div class="loading-box"><div class="spinner"></div><p>Invoking Sacred Items...</p></div>';
@@ -68,10 +100,21 @@ async function loadProducts(search = '') {
     if (search) url += `search=${encodeURIComponent(search)}&`;
 
     const res = await fetch(url);
+    if (!res.ok) throw new Error('API unavailable');
     productsList = await res.json();
     renderProducts(productsList);
   } catch (err) {
-    grid.innerHTML = '<p class="text-center">Please ensure backend server is running.</p>';
+    // Graceful offline & GitHub Pages fallback
+    let list = [...FALLBACK_PRODUCTS];
+    if (currentCategory !== 'all') {
+      list = list.filter(p => p.category_id === parseInt(currentCategory));
+    }
+    if (search) {
+      const q = search.toLowerCase();
+      list = list.filter(p => p.name.toLowerCase().includes(q) || (p.description || '').toLowerCase().includes(q));
+    }
+    productsList = list;
+    renderProducts(list);
   }
 }
 
@@ -81,25 +124,25 @@ function getProductVisual(item) {
   const name = (item.name || '').toLowerCase();
 
   if (img.includes('karungali') || name.includes('karungali')) {
-    return `<img src="/static/images/karungali.svg" alt="${item.name}" class="card-product-photo">`;
+    return `<img src="static/images/karungali.svg" alt="${item.name}" class="card-product-photo">`;
   }
   if (img.includes('hakik') || name.includes('hakik')) {
-    return `<img src="/static/images/hakik.svg" alt="${item.name}" class="card-product-photo">`;
+    return `<img src="static/images/hakik.svg" alt="${item.name}" class="card-product-photo">`;
   }
   if (img.includes('gauri') || name.includes('gauri')) {
-    return `<img src="/static/images/gauri_shankar.svg" alt="${item.name}" class="card-product-photo">`;
+    return `<img src="static/images/gauri_shankar.svg" alt="${item.name}" class="card-product-photo">`;
   }
   if (img.includes('ek_mukhi') || name.includes('1-mukhi')) {
-    return `<img src="/static/images/ek_mukhi.svg" alt="${item.name}" class="card-product-photo">`;
+    return `<img src="static/images/ek_mukhi.svg" alt="${item.name}" class="card-product-photo">`;
   }
   if (img.includes('rudraksha') || name.includes('rudraksha')) {
-    return `<img src="/static/images/rudraksha_mala.svg" alt="${item.name}" class="card-product-photo">`;
+    return `<img src="static/images/rudraksha_mala.svg" alt="${item.name}" class="card-product-photo">`;
   }
   if (name.includes('dattatreya idol') || name.includes('brass lord dattatreya')) {
-    return `<img src="/static/images/datta_altar.jpg" alt="${item.name}" class="card-product-photo object-cover">`;
+    return `<img src="static/images/datta_altar.jpg" alt="${item.name}" class="card-product-photo object-cover">`;
   }
   if (name.includes('paduka')) {
-    return `<img src="/static/images/dattatreya.svg" alt="${item.name}" class="card-product-photo">`;
+    return `<img src="static/images/dattatreya.svg" alt="${item.name}" class="card-product-photo">`;
   }
   return `<span class="emoji-photo">🪷</span>`;
 }
@@ -961,7 +1004,7 @@ async function loadRealtimeCommunityPosts() {
         <article class="post-card premium-card">
           <div class="post-header-row">
             <div class="author-avatar-box">
-              <img src="/static/images/guruji.png" alt="Rushivani" class="author-avatar">
+              <img src="static/images/guruji.png" alt="Rushivani" class="author-avatar">
               <div>
                 <strong>Rushivani ఋషివాణి</strong>
                 <span class="author-handle">@Rushivani • ${post.published || 'Recent'}</span>
