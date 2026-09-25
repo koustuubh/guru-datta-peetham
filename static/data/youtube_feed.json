@@ -101,18 +101,18 @@
   ],
   "videos": [
     {
-      "id": "SWzxZ1ANsKY",
-      "title": "Guruji live Highlights about MulaDhara chakra",
-      "url": "https://www.youtube.com/watch?v=SWzxZ1ANsKY",
-      "thumbnail": "https://i.ytimg.com/vi/SWzxZ1ANsKY/hqdefault.jpg",
-      "type": "video",
-      "published": "Real-time"
-    },
-    {
       "id": "jmluIppsbyY",
       "title": "Mahalaya Pakshaalu Live GURUJI 25-09-2026",
       "url": "https://www.youtube.com/watch?v=jmluIppsbyY",
       "thumbnail": "https://i.ytimg.com/vi/jmluIppsbyY/hqdefault.jpg",
+      "type": "video",
+      "published": "Real-time"
+    },
+    {
+      "id": "SWzxZ1ANsKY",
+      "title": "Guruji live Highlights about MulaDhara chakra",
+      "url": "https://www.youtube.com/watch?v=SWzxZ1ANsKY",
+      "thumbnail": "https://i.ytimg.com/vi/SWzxZ1ANsKY/hqdefault.jpg",
       "type": "video",
       "published": "Real-time"
     },
